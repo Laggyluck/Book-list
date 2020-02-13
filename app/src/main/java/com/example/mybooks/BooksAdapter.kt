@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mybooks.Activities.UpdateActivity
+import com.example.mybooks.activities.UpdateActivity
 import com.example.mybooks.models.Book
 import kotlinx.android.synthetic.main.book_layout.view.*
 

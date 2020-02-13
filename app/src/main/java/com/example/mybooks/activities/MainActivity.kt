@@ -1,4 +1,4 @@
-package com.example.mybooks.Activities
+package com.example.mybooks.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,12 +15,24 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var adapter: BooksAdapter
+    private var adapter: BooksAdapter? = null
     private val dbHandler= DbHandler(this)
 
     fun addBook(view: View) {
         val intent = Intent(this, AddActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        GlobalScope.launch {
+            val books = async {
+                dbHandler.getBooks()
+            }
+            adapter = BooksAdapter(books.await())
+            runOnUiThread { rv_books.adapter = adapter }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
