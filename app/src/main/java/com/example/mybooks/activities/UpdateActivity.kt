@@ -68,7 +68,8 @@ class UpdateActivity : Activity() {
         findViewById<EditText>(R.id.et_author).setText(book?.author)
         findViewById<EditText>(R.id.et_pages).setText(book?.pages.toString())
         findViewById<EditText>(R.id.et_isbnNumber).setText(book?.isbn.toString())
-        //TODO: rating stars
+        //Took me extra 5 minutes
+        findViewById<RatingBar>(R.id.rb_rating).setRating(book?.rating!!.toFloat())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
